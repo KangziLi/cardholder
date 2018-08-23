@@ -14,28 +14,66 @@ public class MycardService {
     @Resource
     private MycardMapper mycardMapper;
 
+    /**
+     * 查找用户名片信息
+     *
+     * @param uid 用户id
+     * @return 名片信息列表
+     */
     public List<Mycard> queryByUid(Integer uid) {
         MycardExample mycardExample = new MycardExample();
         mycardExample.or().andUserIdEqualTo(uid).andDeletedEqualTo(false);
         return mycardMapper.selectByExample(mycardExample);
     }
 
+    /**
+     * 查找名片信息
+     *
+     * @param id 名片id
+     * @return 名片信息
+     */
     public Mycard findById(Integer id) {
         return mycardMapper.selectByPrimaryKey(id);
     }
 
-    public int add(Mycard Mycard) {
-        return mycardMapper.insertSelective(Mycard);
+    /**
+     * 新增名片信息
+     *
+     * @param mycard 名片信息
+     */
+    public int add(Mycard mycard) {
+        return mycardMapper.insertSelective(mycard);
     }
 
-    public int update(Mycard Mycard) {
-        return mycardMapper.updateByPrimaryKeySelective(Mycard);
+    /**
+     * 更新名片信息
+     *
+     * @param mycard 名片信息
+     */
+    public int update(Mycard mycard) {
+        return mycardMapper.updateByPrimaryKeySelective(mycard);
     }
 
+    /**
+     * 删除名片信息
+     *
+     * @param id 名片id
+     */
     public void delete(Integer id) {
         mycardMapper.logicalDeleteByPrimaryKey(id);
     }
 
+    /**
+     * 查找名片
+     *
+     * @param userId 用户id
+     * @param name 名片姓名
+     * @param page 页数
+     * @param limit 条目数
+     * @param sort 排序
+     * @param order 顺序
+     * @return 名片信息列表
+     */
     public List<Mycard> querySelective(Integer userId, String name, Integer page, Integer limit, String sort, String order) {
         MycardExample mycardExample = new MycardExample();
         MycardExample.Criteria criteria = mycardExample.createCriteria();
@@ -56,6 +94,17 @@ public class MycardService {
         return mycardMapper.selectByExample(mycardExample);
     }
 
+    /**
+     * 查找符合条件名片数
+     *
+     * @param userId 用户id
+     * @param name 名片姓名
+     * @param page 页数
+     * @param limit 条目数
+     * @param sort 排序
+     * @param order 顺序
+     * @return 名片信息数目
+     */
     public int countSelective(Integer userId, String name, Integer page, Integer limit, String sort, String order) {
         MycardExample example = new MycardExample();
         MycardExample.Criteria criteria = example.createCriteria();
@@ -71,7 +120,12 @@ public class MycardService {
         return (int)mycardMapper.countByExample(example);
     }
 
-    public void updateById(Mycard Mycard) {
-        mycardMapper.updateByPrimaryKeySelective(Mycard);
+    /**
+     * 更新名片
+     *
+     * @param mycard 名片
+     */
+    public void updateById(Mycard mycard) {
+        mycardMapper.updateByPrimaryKeySelective(mycard);
     }
 }

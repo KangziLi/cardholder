@@ -54,15 +54,17 @@
         <sqlMapGenerator targetPackage="com.lkz.cardholder.dao" targetProject="src/main/resources" />
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.lkz.cardholder.dao" targetProject="src/main/java" />
         <!--表名-->
-
+        <!--个人名片表-->
         <table tableName="mycard">
             <generatedKey column="id" sqlStatement="MySql" identity="true" />
             <columnOverride javaType="java.time.LocalDateTime" column="add_time"/>
         </table>
+        <!--名片表-->
         <table tableName="card">
             <generatedKey column="id" sqlStatement="MySql" identity="true" />
             <columnOverride javaType="java.time.LocalDateTime" column="add_time"/>
         </table>
+        <!--用户表-->
         <table tableName="user">
             <generatedKey column="id" sqlStatement="MySql" identity="true" />
             <columnOverride javaType="java.time.LocalDate" column="birthday"/>

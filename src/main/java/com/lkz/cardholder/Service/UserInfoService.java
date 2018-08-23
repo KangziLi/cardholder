@@ -12,7 +12,12 @@ public class UserInfoService {
     @Autowired
     private UserService userService;
 
-
+    /**
+     * 根据id获取用户信息
+     *
+     * @param  userId 用户id
+     * @return UserInfo
+     */
     public UserInfo getInfo(Integer userId) {
         User user = userService.findById(userId);
         Assert.state(user != null, "用户不存在");
